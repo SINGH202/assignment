@@ -7,7 +7,7 @@ import { Link, Outlet } from "react-router-dom";
 export const Product = () =>{
     const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const api = "https://bookstroe-backend-server.herokuapp.com/books";
+  const api = "https://ecommerce-backend-singh202.herokuapp.com/api/products";
 
   const getProduct = () => {
     setLoading(true);
@@ -39,8 +39,8 @@ export const Product = () =>{
             {!loading && data && data.map((item, index) =>{
               return(<div key={index}>
               <h3>{item.title}</h3>
-              <img src={item.image} alt="" />
-              <h4>Author : {item.author}</h4>
+              <img src={item.img} alt="" />
+              <h4>Author : {item.desc}</h4>
               <h5>Price : {item.price}</h5>
               
           </div>)
