@@ -8,18 +8,19 @@ const AuthContextProvider = ({ children }) => {
   const [isAuth, setAuth] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [token, setToken] = React.useState("");
-  const handleAuth = (email, password) => {
+  const handleAuth = (username, password) => {
+    console.log(username, password)
     axios({
       method: "post",
-      url: "https://reqres.in/api/login",
+      url: "https://ecommerce-backend-singh202.herokuapp.com/api/auth/login",
       data: {
-        email,
+        username,
         password
       }
     })
       .then((res) => {
-        console.log("hi");
-        setToken(res.data.token);
+        console.log(res.data);
+        setToken(res.data.accessToken);
         setAuth(true);
         console.log(isAuth)
       })
