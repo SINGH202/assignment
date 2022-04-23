@@ -10,6 +10,7 @@ import { Logout } from "../components/Logout";
 import { SignUp } from "../components/SignUp";
 import {Cart} from "../components/Cart"
 import { SingleProduct } from "../pages/SingleProduct";
+import { ForgetPassword } from "../components/ForgetPassword";
 
 const RouteComponent = () => {
   return (
@@ -25,7 +26,7 @@ const RouteComponent = () => {
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="signup" element={<SignUp />} />
-        
+        <Route path="forgetPassword" element={<ForgetPassword/>}/>
         <Route path="*" element={<h2>404 Element not found</h2>} />
       </Route>
     </Routes>
