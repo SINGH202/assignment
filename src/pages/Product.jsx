@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./product.css"
-import { Link, Outlet } from "react-router-dom";
+import "./product.css";
+import { SingleProduct } from "./SingleProduct";
+import { useNavigate } from "react-router-dom";
 
-
-export const Product = () =>{
-    const [data, setData] = useState([]);
+export const Product = () => {
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const api = "https://ecommerce-backend-singh202.herokuapp.com/api/products";
 
@@ -17,7 +18,7 @@ export const Product = () =>{
     })
       .then((res) => {
         setData(res.data);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -27,27 +28,30 @@ export const Product = () =>{
       });
   };
 
-  useEffect(()=>{
-      getProduct()
-  }, [])
+  useEffect(() => {
+    getProduct();
+  }, []);
 
-    return (
-        <>
-            <h2>Welcome to Product-Page</h2>
-            {loading && <h2>Loading.....</h2>}
-            <div className="booksDiv">
-            {!loading && data && data.map((item, index) =>{
-              return(<div key={index}>
-              <h3>{item.title}</h3>
-              <img src={item.img} alt="" />
-              <h4>Author : {item.desc}</h4>
-              <h5>Price : {item.price}</h5>
-              
-          </div>)
-            })}
-            </div>
-            <hr/>
-        <Outlet/>
-        </>
-    )
-}
+  return (
+    <>
+      <h2>Welcome to Product-Page</h2>
+      {loading && <h2>Loading.....</h2>}
+      <div className="booksDiv">
+        {!loading &&
+          data &&
+          data.map((item, index) => {
+            return (<SingleProduct
+                id={item._id}
+                title={item.title}
+                img={item.img}
+                desc={item.desc}
+                price={item.price}
+                navigate={navigate}
+              />
+            );
+          })}
+      </div>
+      <hr />
+    </>
+  );
+};

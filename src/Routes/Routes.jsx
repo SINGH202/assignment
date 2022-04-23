@@ -8,6 +8,8 @@ import App from "../App";
 import { PrivateRoutes } from "./PrivateRoute";
 import { Logout } from "../components/Logout";
 import { SignUp } from "../components/SignUp";
+import {Cart} from "../components/Cart"
+import { SingleProduct } from "../pages/SingleProduct";
 
 const RouteComponent = () => {
   return (
@@ -16,13 +18,14 @@ const RouteComponent = () => {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="products" element={<Product />}>
-            
-          </Route>
+          <Route path="/products" element={<Product />}></Route>
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/cart" element={<Cart/>}/>
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
-        <Route path="signup" element={<SignUp/>}/>
+        <Route path="signup" element={<SignUp />} />
+        
         <Route path="*" element={<h2>404 Element not found</h2>} />
       </Route>
     </Routes>

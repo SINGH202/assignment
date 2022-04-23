@@ -1,36 +1,25 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Button } from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router"
 
-export const SingleProduct = () => {
-  const { productId } = useParams();
-  const [data, setData] = useState(null);
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: `https://fakestoreapi.com/products/${productId}`,
-    })
-      .then((res) => {
-        setData(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [productId]);
+export const SingleProduct = ({id, title, img, desc, price}) => {
+  const navi = useNavigate();
+
+  const handleNav = () =>{
+    // navi(`/products/${id}`)
+    console.log(id)
+  }
+
 
   return (
-    <>
-      <h1>Single Product</h1>
-      {data && (
-        <div>
-          {" "}
-          <h2>{data.title}</h2>
-          <img src={data.image} alt="" width={"100px"} />
-          <h4>{data.description}</h4>
-        </div>
-      )}
-    </>
+    <div key={id}>
+
+        <h3> {title}</h3>
+        <img src={img} alt={title} />
+        <h4>Author : {desc}</h4>
+        <h5>Price : {price}</h5>
+        <Button variant="contained" onClick={handleNav}>Add to cart</Button>
+    </div>
   );
 };

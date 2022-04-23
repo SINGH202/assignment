@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextProvider";
-
+import "./navbar.css"
 
 
 const Navbar = () =>{
@@ -30,16 +30,20 @@ const Navbar = () =>{
             to:"/products"
         },
         {
+            title:"Cart",
+            to:"/cart"
+        },
+        {
             title:getToken()[0],
             to: getToken()[1]
         }
     ]
 
-    return(
-        <div style={{backgroundColor:"gray", padding:"20px", margin:"0px"}}>
+    return( 
+        <div className="navDiv" style={{backgroundColor:"gray", padding:"20px", margin:"0px"}}>
             {links.map(({title, to}, index) =>{
                 return <NavLink key={index} to={to} style={({isActive}) => ({
-                    color: isActive? "red":"blue"
+                    color: isActive? "#00ff5f":"blue"
                 })} >{title}</NavLink>
             })}
         </div>

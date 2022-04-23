@@ -1,6 +1,9 @@
-.navlinks{
-    margin: 0px;
-    text-decoration: none;
+.navDiv{
+    margin: 50px;
     font-size: 20px;
     font-weight: 600;
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: flex-end;
+    text-decoration: none;
 }
