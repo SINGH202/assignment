@@ -41,6 +41,7 @@ export const Product = () => {
           data &&
           data.map((item, index) => {
             return (<SingleProduct
+                key={item._id}
                 id={item._id}
                 title={item.title}
                 img={item.img}

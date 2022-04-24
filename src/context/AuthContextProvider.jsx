@@ -8,6 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const [isAuth, setAuth] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [token, setToken] = React.useState("");
+  const [userId, setUserId] = React.useState("")
   const handleAuth = (username, password) => {
     console.log(username, password)
     axios({
@@ -20,6 +21,7 @@ const AuthContextProvider = ({ children }) => {
     })
       .then((res) => {
         console.log(res.data);
+        setUserId(res.data._id)
         setToken(res.data.accessToken);
         setAuth(true);
         console.log(isAuth)
@@ -38,7 +40,7 @@ const AuthContextProvider = ({ children }) => {
 
   // console.log(children);
   AuthContext.displayName = "Auth_Context";
-  const value = { isAuth, err, token, handleAuth, handleLogout };
+  const value = { isAuth, userId, err, token, handleAuth, handleLogout };
   return <AuthContext.Provider value={value}> {children}</AuthContext.Provider>;
 };
 export { AuthContext, AuthContextProvider };
