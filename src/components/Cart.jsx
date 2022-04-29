@@ -6,7 +6,7 @@ export const Cart = () => {
   console.log(token)
   const api = `https://ecommerce-backend-singh202.herokuapp.com/api/cart/find/${userId}`
   const getCart = () => {
-    axios(api , { headers: {"Authorization" : `Bearer ${token}`} })
+    axios(api , { headers: {"token" : `Bearer ${token}`} })
       .then((res) => {
         console.log(res.data);
       })
